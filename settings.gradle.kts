@@ -21,11 +21,6 @@ dependencyResolutionManagement {
             }
         }
     }
-    versionCatalogs {
-        create("servicelibs") {
-            from("com.figure.gradle:catalog-thirdparty:0.1.+")
-        }
-    }
 }
 
 pluginManagement {
