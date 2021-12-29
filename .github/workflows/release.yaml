@@ -41,8 +41,10 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Create Version file
+      - name: Create Version & Changelog file
         uses: gradle/gradle-build-action@v2
+        with:
+          arguments: patchChangelog
 
       - name: Commit and Push Change Log
         id: changelog-commit
