@@ -6,6 +6,7 @@ rootProject.name = "test-build"
 dependencyResolutionManagement {
     repositories {
         mavenLocal()
+        mavenCentral()
         maven {
             url = uri("https://nexus.figure.com/repository/mirror")
             credentials {
@@ -26,6 +27,7 @@ dependencyResolutionManagement {
 pluginManagement {
     repositories {
         mavenLocal()
+        mavenCentral()
         maven {
             url = uri("https://nexus.figure.com/repository/mirror")
             credentials {
