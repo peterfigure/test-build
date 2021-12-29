@@ -24,9 +24,9 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           arguments: |
-            clean build \
-            -Psemver.overrideVersion=${{ github.event.release.tag_name }} \ 
-            -PgitHubTokenProp=${{ github.token }} \
+            clean build 
+            -Psemver.overrideVersion=${{ github.event.release.tag_name }}  
+            -PgitHubTokenProp=${{ github.token }} 
             publishToSonatype closeAndReleaseSonatypeStagingRepository
         env:
           OSS_USER: '${{ secrets.OSS_USER }}'

@@ -45,9 +45,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: |
-            clean build \
-            -Psemver.main.scope=${{ inputs.scope }} -Psemver.main.stage=${{ inputs.stage }} \ 
-            -PgitHubTokenProp=${{ github.token }} \
+            clean build 
+            -Psemver.main.scope=${{ inputs.scope }} -Psemver.main.stage=${{ inputs.stage }}  
+            -PgitHubTokenProp=${{ github.token }} 
             githubRelease
         env:
           TOKEN_GITHUB_ACTION: '${{ secrets.GITHUB_TOKEN }}'
