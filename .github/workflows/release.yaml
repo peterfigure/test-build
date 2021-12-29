@@ -52,7 +52,7 @@ jobs:
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git add CHANGELOG.md
-          git commit -m "Update Changelog for `cat build/semver/version.txt |  tail -1`"
+          git commit -m "Update Changelog for `cat build/semver/version.txt |  head -1`"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
 
