@@ -1,8 +1,4 @@
-name: CI Build
-
-# Test the build on every push or PR for every branch, except:
-#  1. renovate created branches
-#  2. only markdown files were updated
+name: Dependency Scan
 
 on:
   push:
@@ -31,3 +27,10 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }} # only update the cache on the default branch https://github.com/gradle/gradle-build-action#optimizing-cache-effectiveness
           arguments: clean dependencyCheckAggregate
+
+      - name: Publish Dependency Report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: dependency-report
+          path: ${{ github.workspace }}/**/dependency-check-report.html'
