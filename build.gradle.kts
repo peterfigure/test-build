@@ -197,19 +197,24 @@ githubRelease {
 
     token(gitHubTokenProp) // This is your personal access token with Repo permissions
     // You get this from your user settings > developer settings > Personal Access Tokens
-    owner("nefilim") // default is the last part of your group. Eg group: "com.github.breadmoirai" => owner: "breadmoirai"
-    repo("test-build") // by default this is set to your project name
-    tagName("v${project.version}") // by default this is set to "v${project.version}"
-    targetCommitish("main") // by default this is set to "master"
+    owner("nefilim")
+    repo("test-build")
+    tagName.set(semver.calculatedTagName)
+    targetCommitish("main")
     body(changelog())
-//    body(changelog.getUnreleased().toString())
-    draft(false) // by default this is false
-    prerelease(false) // by default this is false
+    draft(false)
+    prerelease(false)
 
-    overwrite(false) // by default false; if set to true, will delete an existing release with the same tag and name
+    overwrite(false) 
     dryRun(false) // by default false; you can use this to see what actions would be taken without making a release
     apiEndpoint("https://api.github.com") // should only change for github enterprise users
     client // This is the okhttp client used for http requests
+}
+
+tasks.register("printstuff") {
+    doLast {
+        println(githubRelease.tagName.get())
+    }
 }
 
 fun isNonStable(version: String): Boolean {
