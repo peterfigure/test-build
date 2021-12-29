@@ -41,16 +41,8 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Tag and Create GitHub Release
+      - name: Create Version file
         uses: gradle/gradle-build-action@v2
-        with:
-          arguments: |
-            clean build 
-            -Psemver.main.scope=${{ inputs.scope }} -Psemver.main.stage=${{ inputs.stage }}  
-            -PgitHubTokenProp=${{ github.token }} 
-            githubRelease
-        env:
-          TOKEN_GITHUB_ACTION: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Commit and Push Change Log
         id: changelog-commit
@@ -61,3 +53,14 @@ jobs:
           git commit -m "Version `cat build/semver/version.txt`"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
+
+      - name: Tag and Create GitHub Release
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            clean build 
+            -Psemver.main.scope=${{ inputs.scope }} -Psemver.main.stage=${{ inputs.stage }}  
+            -PgitHubTokenProp=${{ github.token }} 
+            githubRelease
+        env:
+          TOKEN_GITHUB_ACTION: '${{ secrets.GITHUB_TOKEN }}'

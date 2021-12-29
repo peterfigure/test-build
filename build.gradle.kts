@@ -183,7 +183,7 @@ subprojects {
 }
 
 changelog {
-    version.set(project.version.toString())
+    version.set(semver.calculatedTagName)
     path.set("${project.projectDir}/CHANGELOG.md")
     header.set(provider { "[${version.get()}] - ${date()}" })
     itemPrefix.set("-")
