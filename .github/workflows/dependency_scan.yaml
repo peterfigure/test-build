@@ -1,6 +1,7 @@
 name: Dependency Scan
 
 on:
+  workflow_dispatch:
   push:
     branches-ignore:
       - 'renovate/*'
