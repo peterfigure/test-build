@@ -1,5 +1,6 @@
 # Changelog
 
+## [Unreleased]
 ### Added
 
 ### Changed
@@ -12,7 +13,7 @@
 
 ### Security
 
-## [0.2.0] - 2021-12-29
+## [v0.2.0] - 2021-12-29
 ### Added
 - Example item
 

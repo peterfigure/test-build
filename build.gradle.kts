@@ -187,9 +187,10 @@ changelog {
     path.set("${project.projectDir}/CHANGELOG.md")
     header.set(provider { "[${version.get()}] - ${date()}" })
     itemPrefix.set("-")
-    keepUnreleasedSection.set(false)
+    keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")
     groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
+    headerParserRegex.set("""^v((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)${'$'}""".toRegex())
 }
 
 githubRelease {
