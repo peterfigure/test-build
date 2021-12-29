@@ -1,0 +1,57 @@
+[versions]
+kotlin = "1.6.10"
+kotlinXCoroutines = "1.6.0"
+kotlinXSerialization = "1.3.2"
+
+# third party
+arrow = "1.0.1"
+github-release = "2.2.12"
+google-kms = "0.94.0"
+gradle-changelog="1.3.1"
+gradle-versions = "0.39.0"
+jib = "3.1.4"
+jib-extension = "0.1.0"
+kotest = "5.0.3"
+kotestExtensionsArrow = "1.2.1"
+kover = "0.4.4"
+kotlinLogging = "2.1.21"
+logback = "1.2.10"
+nexus-publish = "1.1.0"
+nimbus = "9.15.2"
+owasp-dependencycheck = "6.5.1"
+semver = "0.0.11"
+slf4j = "1.7.4"
+tasktree = "2.1.0"
+testlogger = "3.1.0"
+
+[libraries]
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinXCoroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinXSerialization" }
+
+arrow-stack = { module = "io.arrow-kt:arrow-stack", version.ref = "arrow" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
+arrow-fx = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrow" }
+arrow-meta = { module = "io.arrow-kt:arrow-meta", version.ref = "arrow" }
+arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow" }
+arrow-opticsKSP = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
+
+kotest-runner = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+kotest-assertions-arrow = { module = "io.kotest.extensions:kotest-assertions-arrow", version.ref = "kotestExtensionsArrow" }
+
+kotlinLogging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "kotlinLogging" }
+logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+slf4jAPI = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+[plugins]
+changelog = { id = "org.jetbrains.changelog", version.ref = "gradle-changelog" }
+dependencyCheck = { id = "org.owasp.dependencycheck", version.ref = "owasp-dependencycheck" }
+dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions" }
+githubRelease = { id = "com.github.breadmoirai.github-release", version.ref = "github-release" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus-publish" }
+semver = { id = "io.github.nefilim.gradle.semver-plugin", version.ref = "semver" }
+tasktree = { id = "com.dorongold.task-tree", version.ref = "tasktree" }
+testlogger = { id = "com.adarshr.test-logger", version.ref = "testlogger" }
