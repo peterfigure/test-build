@@ -63,8 +63,7 @@ jobs:
         with:
           arguments: |
             clean build 
-            -Psemver.main.scope=${{ inputs.scope }} -Psemver.main.stage=${{ inputs.stage }}  
-            -PgitHubTokenProp=${{ github.token }} 
+            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
             githubRelease
         env:
-          TOKEN_GITHUB_ACTION: '${{ secrets.GITHUB_TOKEN }}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

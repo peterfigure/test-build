@@ -188,9 +188,11 @@ subprojects {
 //    headerParserRegex.set("""^v((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)${'$'}""".toRegex())
 //}
 
+val githubTokenValue = findProperty("githubToken")?.toString() ?: System.getenv("GITHUB_TOKEN")
+
 changelog {
     githubUser = "nefilim"//
-    githubToken = findProperty("githubToken")?.toString() ?: System.getenv("GITHUB_TOKEN")
+    githubToken = githubTokenValue
     githubRepository = "test-build"
 
     title = "Change Log"
@@ -217,9 +219,7 @@ changelog {
 }
 
 githubRelease {
-    val gitHubTokenProp: String? by project
-
-    token(gitHubTokenProp) // This is your personal access token with Repo permissions
+    token(githubTokenValue) // This is your personal access token with Repo permissions
     // You get this from your user settings > developer settings > Personal Access Tokens
     owner("nefilim")
     repo("test-build")

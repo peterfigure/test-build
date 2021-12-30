@@ -20,7 +20,7 @@
 
 
 ## [vunspecified](https://github.com/nefilim/test-build/tree/vunspecified) (2021-12-29)
-[View commits](https://github.com/nefilim/test-build/compare/fc9eff3aad36e0627ef1a6cd8be4b3e5be172a84...vunspecified)
+[View commits](https://github.com/nefilim/test-build/compare/6fc05a20fbbe68525a1f202944c1d3bd6cfa4480...vunspecified)
 
 **Merged pull requests:**
 
