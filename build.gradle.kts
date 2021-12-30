@@ -194,8 +194,8 @@ subprojects {
 //}
 
 changelog {
-    githubUser = "nefilim"// [mandatory] project property "githubUser" or env variable "GITHUB_USER"
-    githubToken = findProperty("githubToken").toString() // [optional] project property "githubToken" or env variable "GITHUB_TOKEN"
+    githubUser = "nefilim"//
+    githubToken = findProperty("githubToken")?.toString() ?: System.getenv("GITHUB_TOKEN")
     githubRepository = "test-build"
 
     title = "Change Log"

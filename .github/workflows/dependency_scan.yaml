@@ -23,7 +23,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      - name: Build with Gradle
+      - name: Scan Dependencies with OWASP plugin
         uses: gradle/gradle-build-action@v2
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }} # only update the cache on the default branch https://github.com/gradle/gradle-build-action#optimizing-cache-effectiveness
