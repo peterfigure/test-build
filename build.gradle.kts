@@ -30,17 +30,12 @@ nexusPublishing {
 semver {
     verbose(true)
     tagPrefix("v")
-    val initialVersion: String? by project
-    initialVersion(initialVersion)
-    val overrideVersion: String? by project
-    overrideVersion?.let { overrideVersion(it) }
+    initialVersion("0.0.1")
+    findProperty("semver.overrideVersion")?.toString()?.let { overrideVersion(it) }
+
     main {
-        scope("minor")
-        stage("final")
-    }
-    feature {
-        scope("patch")
-        stage("alpha")
+        scope(findProperty("semver.main.scope")?.toString() ?: "minor")
+        stage(findProperty("semver.main.stage")?.toString() ?: "final")
     }
 }
 

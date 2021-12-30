@@ -45,6 +45,8 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: generateChangelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and Push Change Log
         id: changelog-commit
