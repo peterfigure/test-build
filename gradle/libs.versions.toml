@@ -7,7 +7,8 @@ kotlinXSerialization = "1.3.2"
 arrow = "1.0.1"
 github-release = "2.2.12"
 google-kms = "0.94.0"
-gradle-changelog="1.3.1"
+# gradle-changelog="1.3.1"
+gradle-changelog="1.8.0"
 gradle-versions = "0.39.0"
 jib = "3.1.4"
 jib-extension = "0.1.0"
@@ -45,7 +46,8 @@ logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "log
 slf4jAPI = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 [plugins]
-changelog = { id = "org.jetbrains.changelog", version.ref = "gradle-changelog" }
+# changelog = { id = "org.jetbrains.changelog", version.ref = "gradle-changelog" }
+changelog = { id = "org.hildan.github.changelog", version.ref = "gradle-changelog" }
 dependencyCheck = { id = "org.owasp.dependencycheck", version.ref = "owasp-dependencycheck" }
 dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions" }
 githubRelease = { id = "com.github.breadmoirai.github-release", version.ref = "github-release" }

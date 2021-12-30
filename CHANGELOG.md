@@ -1,31 +1,27 @@
-# Changelog
+# Change Log
 
-## [Unreleased]
-### Added
+## [v0.3.0](https://github.com/nefilim/test-build/tree/v0.3.0) (2021-12-29)
+[View commits](https://github.com/nefilim/test-build/compare/v0.2.0...v0.3.0)
 
-### Changed
+**Implemented enhancements:**
 
-### Deprecated
+- use expected version in changelog header [\#3](https://github.com/nefilim/test-build/pull/3) ([@nefilim](https://github.com/nefilim))
 
-### Removed
+**Merged pull requests:**
 
-### Fixed
+- improve release process [\#2](https://github.com/nefilim/test-build/pull/2) ([@nefilim](https://github.com/nefilim))
 
-### Security
+## [v0.2.0](https://github.com/nefilim/test-build/tree/v0.2.0) (2021-12-29)
+[View commits](https://github.com/nefilim/test-build/compare/v0.1.0...v0.2.0)
 
-## [v0.3.0] - 2021-12-29
-### Added
 
-### Changed
+## [v0.1.0](https://github.com/nefilim/test-build/tree/v0.1.0) (2021-12-29)
+[View commits](https://github.com/nefilim/test-build/compare/vunspecified...v0.1.0)
 
-### Deprecated
 
-### Removed
+## [vunspecified](https://github.com/nefilim/test-build/tree/vunspecified) (2021-12-29)
+[View commits](https://github.com/nefilim/test-build/compare/1d391bf0da460fbc6180e3411164847db88fe625...vunspecified)
 
-### Fixed
+**Merged pull requests:**
 
-### Security
-
-## [v0.2.0] - 2021-12-29
-### Added
-- Example item
+- make dependency scan GHA dispatchable [\#1](https://github.com/nefilim/test-build/pull/1) ([@nefilim](https://github.com/nefilim))

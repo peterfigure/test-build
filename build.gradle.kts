@@ -1,4 +1,3 @@
-import org.jetbrains.changelog.date
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
@@ -12,6 +11,7 @@ plugins {
     alias(libs.plugins.dependencyCheck)
     alias(libs.plugins.githubRelease)
     alias(libs.plugins.changelog)
+//    id("org.jetbrains.intellij") version "1.3.0"
     `maven-publish`
     signing
 }
@@ -182,15 +182,43 @@ subprojects {
     }
 }
 
+//changelog {
+//    version.set(semver.calculatedTagName)
+//    path.set("${project.projectDir}/CHANGELOG.md")
+//    header.set(provider { "[${version.get()}] - ${date()}" })
+//    itemPrefix.set("-")
+//    keepUnreleasedSection.set(true)
+//    unreleasedTerm.set("[Unreleased]")
+//    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
+//    headerParserRegex.set("""^v((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)${'$'}""".toRegex())
+//}
+
 changelog {
-    version.set(semver.calculatedTagName)
-    path.set("${project.projectDir}/CHANGELOG.md")
-    header.set(provider { "[${version.get()}] - ${date()}" })
-    itemPrefix.set("-")
-    keepUnreleasedSection.set(true)
-    unreleasedTerm.set("[Unreleased]")
-    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
-    headerParserRegex.set("""^v((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)${'$'}""".toRegex())
+    githubUser = "nefilim"// [mandatory] project property "githubUser" or env variable "GITHUB_USER"
+    githubToken = findProperty("githubToken").toString() // [optional] project property "githubToken" or env variable "GITHUB_TOKEN"
+    githubRepository = "test-build"
+
+    title = "Change Log"
+    showUnreleased = true
+    unreleasedVersionTitle = "Unreleased"
+    futureVersionTag = null
+    sections = emptyList() // no custom sections by default, but default sections are prepended
+    defaultIssueSectionTitle = "Closed issues:"
+    defaultPrSectionTitle = "Merged pull requests:"
+    includeLabels = emptyList()
+    excludeLabels = listOf("duplicate", "invalid", "question", "wontfix")
+    sinceTag = null
+    skipTags = emptyList()
+    skipTagsRegex = emptyList()
+    releaseUrlTemplate = null // defaults to "https://github.com/$user/$repo/tree/%s"
+    diffUrlTemplate = null // defaults to "https://github.com/$user/$repo/compare/%s...%s"
+    releaseUrlTagTransform = { it }
+    diffUrlTagTransform = { it }
+//    customTagByIssueNumber = [:]
+    useMilestoneAsTag = true
+//    timezone = java.time.ZoneId.of("GMT")
+
+    outputFile = file("${projectDir}/CHANGELOG.md")
 }
 
 githubRelease {
