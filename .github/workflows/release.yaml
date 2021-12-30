@@ -44,7 +44,9 @@ jobs:
       - name: Create Version & Changelog file
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: generateChangelog
+          arguments: |
+            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
+            generateChangelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -62,8 +64,8 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: |
-            clean build 
             -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
+            clean build 
             githubRelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
