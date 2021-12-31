@@ -27,13 +27,13 @@ on:
 
 jobs:
   release:
-    uses: nefilim/test-build/.github/workflows/release.yml@main
+    uses: nefilim/test-build/.github/workflows/release.yaml@main
     with:
       scope: ${{ inputs.scope }}
       stage: ${{ inputs.stage }}
 
   publish:
-    uses: nefilim/test-build/.github/workflows/publish.yml@main
+    uses: nefilim/test-build/.github/workflows/publish.yaml@main
     needs: release
     with:
       version_tag: ${{ needs.release.outputs.version_tag }}
