@@ -1,4 +1,4 @@
-name: Manual release
+name: Release and Publish
 
 # Kick off a release manually, only allowed on the main branch
 # Optionally specify the scope & stage to use for the SemVer for the release

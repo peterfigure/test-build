@@ -1,4 +1,4 @@
-name: Publish the release
+name: Publish the Release
 
 on:
   workflow_call:
@@ -28,6 +28,7 @@ jobs:
         with:
           arguments: |
             clean build 
+            -Psemver.overrideVersion=${{ inputs.version_tag }}
             -PgitHubTokenProp=${{ github.token }} 
             publishToSonatype closeAndReleaseSonatypeStagingRepository
         env:
