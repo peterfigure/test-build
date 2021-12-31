@@ -54,6 +54,7 @@ jobs:
       - name: Commit and Push Change Log
         id: changelog-commit
         run: |
+          ./gradlew -q properties | grep ^version
           echo "version_tag: $(cat build/semver/version.txt | tail -1)" 
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
