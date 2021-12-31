@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check Input
+        run: echo "the version tag:" ${{ inputs.version_tag}}
       - name: Checkout
         uses: actions/checkout@v2
         with:
