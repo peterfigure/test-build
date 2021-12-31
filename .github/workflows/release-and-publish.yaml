@@ -33,7 +33,7 @@ jobs:
 #      stage: ${{ github.event.inputs.stage }}
 
   tag-and-create-release:
-#    if: github.ref == 'refs/heads/main' # only release from main
+    if: github.ref == 'refs/heads/main' # only release from main
     runs-on: ubuntu-latest
 
     outputs:

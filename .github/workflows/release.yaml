@@ -17,7 +17,7 @@ on:
     outputs:
       version_tag:
         description: 'SemVer Tag Name'
-        value: ${{ jobs.tag-and-create-release.outputs.output_version_tag }}
+        value: ${{ jobs.tag-and-create-release.outputs.version_tag }}
 
 concurrency: main_release
 
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      output_version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
+      version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
       
     steps:
       - name: Checkout
