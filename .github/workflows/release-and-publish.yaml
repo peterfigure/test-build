@@ -26,7 +26,7 @@ on:
           - 'major'
 
 jobs:
-  release:
+  release-and-tag:
     uses: nefilim/test-build/.github/workflows/release.yaml@main
     with:
       scope: ${{ github.event.inputs.scope }}
@@ -34,6 +34,6 @@ jobs:
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
-    needs: release
+    needs: release-and-tag
     with:
-      version_tag: ${{ needs.release.outputs.version_tag }}
+      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}
