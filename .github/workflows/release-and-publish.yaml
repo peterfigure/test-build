@@ -87,7 +87,7 @@ jobs:
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
 #    needs: release-and-tag
-    needs: dummy
+    needs: tag-and-create-release
     with:
       version_tag: ${{ needs.tag-and-create-release.outputs.version_tag }}
 #      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}
