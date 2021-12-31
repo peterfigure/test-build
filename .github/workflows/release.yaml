@@ -17,7 +17,7 @@ on:
     outputs:
       version_tag:
         description: 'SemVer Tag Name'
-        value: ${{ jobs.tag-and-create-release.outputs.version_tag }}
+        value: ${{ jobs.tag-and-create-release.outputs.output_version_tag }}
 
 concurrency: main_release
 
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
+      output_version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
       
     steps:
       - name: Checkout
@@ -54,7 +54,6 @@ jobs:
       - name: Commit and Push Change Log
         id: changelog-commit
         run: |
-          ./gradlew -q properties | grep ^version
           echo "version_tag: $(cat build/semver/version.txt | tail -1)" 
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
