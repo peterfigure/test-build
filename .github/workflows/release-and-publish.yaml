@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      output_version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
+      version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
 
     steps:
       - name: Checkout
