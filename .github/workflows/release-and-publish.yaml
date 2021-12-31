@@ -70,7 +70,6 @@ jobs:
           git add CHANGELOG.md
           git commit -m "Update Changelog for $(cat build/semver/version.txt | tail -1)"
           git push
-          echo "::set-output name=sha::$(git rev-parse HEAD)"
           echo "::set-output name=version_tag::$(cat build/semver/version.txt | tail -1)"
 
       - name: Tag and Create GitHub Release
