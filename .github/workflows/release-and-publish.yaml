@@ -29,8 +29,8 @@ jobs:
   release:
     uses: nefilim/test-build/.github/workflows/release.yaml@main
     with:
-      scope: ${{ inputs.scope }}
-      stage: ${{ inputs.stage }}
+      scope: ${{ github.event.inputs.scope }}
+      stage: ${{ github.event.inputs.stage }}
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
