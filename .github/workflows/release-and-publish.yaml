@@ -1,0 +1,39 @@
+name: Manual release
+
+# Kick off a release manually, only allowed on the main branch
+# Optionally specify the scope & stage to use for the SemVer for the release
+
+on:
+  workflow_dispatch:
+    if: github.ref == 'refs/heads/main'
+    inputs:
+      stage:
+        description: 'Stage'
+        required: true
+        default: 'final'
+        type: choice
+        options:
+          - 'rc'
+          - 'final'
+      scope:
+        description: 'Scope'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - 'patch'
+          - 'minor'
+          - 'major'
+
+jobs:
+  release:
+    uses: nefilim/test-build/.github/workflows/release.yml@main
+    with:
+      scope: ${{ inputs.scope }}
+      stage: ${{ inputs.stage }}
+
+  publish:
+    uses: nefilim/test-build/.github/workflows/publish.yml@main
+    needs: release
+    with:
+      version_tag: ${{ needs.release.outputs.version_tag }}

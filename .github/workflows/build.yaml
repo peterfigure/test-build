@@ -16,6 +16,8 @@ on:
     paths-ignore:
       - '**.md'
 
+concurrency: ci-${{ github.ref }}
+
 jobs:
   check-and-build:
     runs-on: ubuntu-latest

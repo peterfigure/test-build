@@ -4,31 +4,30 @@ name: Manual release
 # Optionally specify the scope & stage to use for the SemVer for the release
 
 on:
-  workflow_dispatch:
+  workflow_call:
     if: github.ref == 'refs/heads/main'
     inputs:
       stage:
         description: 'Stage'
         required: true
-        default: 'final'
-        type: choice
-        options:
-          - 'rc'
-          - 'final'
+        type: string
       scope:
         description: 'Scope'
         required: true
-        default: 'patch'
-        type: choice
-        options:
-          - 'patch'
-          - 'minor'
-          - 'major'
+        type: string
+    outputs:
+      version_tag:
+        description: 'SemVer Tag Name'
+
+concurrency: main_release
 
 jobs:
   tag-and-create-release:
     runs-on: ubuntu-latest
 
+    outputs:
+      version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -61,6 +60,7 @@ jobs:
           git commit -m "Update Changelog for ${{ env.version_tag }}"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
+          echo "::set-output name=version_tag::${{ env.version_tag }}"
 
       - name: Tag and Create GitHub Release
         uses: gradle/gradle-build-action@v2
@@ -69,11 +69,6 @@ jobs:
           arguments: |
             -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
             clean build 
-            publishToSonatype closeAndReleaseSonatypeStagingRepository
             githubRelease
         env:
           GITHUB_TOKEN: ${{ github.token }}
-
-      - uses: nefilim/test-build/.github/workflows/release.yml@main
-        with:
-          version_tag: ${{ version_tag }}
