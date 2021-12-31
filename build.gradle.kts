@@ -1,5 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.time.ZoneId
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -198,7 +199,7 @@ changelog {
     title = "Change Log"
     showUnreleased = true
     unreleasedVersionTitle = "Unreleased"
-    futureVersionTag = null
+    futureVersionTag = project.version.toString()
     sections = emptyList() // no custom sections by default, but default sections are prepended
     defaultIssueSectionTitle = "Closed issues:"
     defaultPrSectionTitle = "Merged pull requests:"
@@ -213,7 +214,7 @@ changelog {
     diffUrlTagTransform = { it }
 //    customTagByIssueNumber = [:]
     useMilestoneAsTag = true
-//    timezone = java.time.ZoneId.of("GMT")
+    timezone = ZoneId.of("America/Denver")
 
     outputFile = file("${projectDir}/CHANGELOG.md")
 }
