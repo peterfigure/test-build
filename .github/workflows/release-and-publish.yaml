@@ -26,14 +26,20 @@ on:
           - 'major'
 
 jobs:
-  release-and-tag:
-    uses: nefilim/test-build/.github/workflows/release.yaml@main
-    with:
-      scope: ${{ github.event.inputs.scope }}
-      stage: ${{ github.event.inputs.stage }}
+#  release-and-tag:
+#    uses: nefilim/test-build/.github/workflows/release.yaml@main
+#    with:
+#      scope: ${{ github.event.inputs.scope }}
+#      stage: ${{ github.event.inputs.stage }}
+
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world!"
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
-    needs: release-and-tag
+#    needs: release-and-tag
+    needs: dummy
     with:
       version_tag: "v0.4.4" #${{ needs.release-and-tag.outputs.version_tag }}

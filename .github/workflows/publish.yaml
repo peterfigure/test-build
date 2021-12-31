@@ -4,6 +4,7 @@ on:
   workflow_call:
     inputs:
       version_tag:
+        description: 'SemVer Tag Name for the Release to publish'
         required: true
         type: string
 
