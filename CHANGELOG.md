@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.3.4](https://github.com/nefilim/test-build/tree/v0.3.4) (2021-12-31)
+[View commits](https://github.com/nefilim/test-build/compare/v0.3.3...v0.3.4)
+
+
 ## [v0.3.3](https://github.com/nefilim/test-build/tree/v0.3.3) (2021-12-30)
 [View commits](https://github.com/nefilim/test-build/compare/v0.3.2...v0.3.3)
 
@@ -28,7 +32,7 @@
 
 
 ## [v0.1.0](https://github.com/nefilim/test-build/tree/v0.1.0) (2021-12-29)
-[View commits](https://github.com/nefilim/test-build/compare/a0da0502d08ffd576157788d45308f4c3834296a...v0.1.0)
+[View commits](https://github.com/nefilim/test-build/compare/3c22eedd293e38d90f1aad334c5b704acb708750...v0.1.0)
 
 **Merged pull requests:**
 
