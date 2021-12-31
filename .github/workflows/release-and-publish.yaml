@@ -34,12 +34,18 @@ jobs:
 
   dummy:
     runs-on: ubuntu-latest
+    outputs:
+      version_tag: ${{ steps.step2.outputs.version_tag }}
     steps:
-      - run: echo "hello world!"
+      - id: step1
+        run: echo "hello world!"
+      - id: step2
+        run: echo "::set-output name=version_tag::v0.4.4"
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
 #    needs: release-and-tag
     needs: dummy
     with:
-      version_tag: "v0.4.4" #${{ needs.release-and-tag.outputs.version_tag }}
+      version_tag: ${{ needs.dummy.outputs.version_tag }}
+#      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}
