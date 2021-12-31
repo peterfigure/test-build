@@ -34,6 +34,6 @@ jobs:
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
-    needs: release-and-tag
+#    needs: release-and-tag
     with:
-      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}
+      version_tag: "v0.4.4" #${{ needs.release-and-tag.outputs.version_tag }}
