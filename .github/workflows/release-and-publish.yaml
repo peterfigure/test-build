@@ -26,67 +26,14 @@ on:
           - 'major'
 
 jobs:
-#  release-and-tag:
-#    uses: nefilim/test-build/.github/workflows/release.yaml@main
-#    with:
-#      scope: ${{ github.event.inputs.scope }}
-#      stage: ${{ github.event.inputs.stage }}
-
-  tag-and-create-release:
-    if: github.ref == 'refs/heads/main' # only release from main
-    runs-on: ubuntu-latest
-
-    outputs:
-      version_tag: ${{ steps.changelog-commit.outputs.version_tag }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'zulu'
-          java-version: '11'
-
-      - name: Create Version & Changelog file
-        uses: gradle/gradle-build-action@v2
-        with:
-          cache-read-only: ${{ github.ref != 'refs/heads/develop' }} # only update the cache on the default branch https://github.com/gradle/gradle-build-action#optimizing-cache-effectiveness
-          arguments: |
-            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
-            generateChangelog
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
-      - name: Commit and Push Change Log
-        id: changelog-commit
-        run: |
-          echo "version_tag: $(cat build/semver/version.txt | tail -1)" 
-          git config user.name '${{ github.actor }}'
-          git config user.email '${{ github.actor }}@users.noreply.github.com'
-          git add CHANGELOG.md
-          git commit -m "Update Changelog for $(cat build/semver/version.txt | tail -1)"
-          git push
-          echo "::set-output name=version_tag::$(cat build/semver/version.txt | tail -1)"
-
-      - name: Tag and Create GitHub Release
-        uses: gradle/gradle-build-action@v2
-        with:
-          cache-read-only: ${{ github.ref != 'refs/heads/develop' }} # only update the cache on the default branch https://github.com/gradle/gradle-build-action#optimizing-cache-effectiveness
-          arguments: |
-            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
-            clean build 
-            githubRelease
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+  release-and-tag:
+    uses: nefilim/test-build/.github/workflows/release.yaml@main
+    with:
+      scope: ${{ github.event.inputs.scope }}
+      stage: ${{ github.event.inputs.stage }}
 
   publish:
     uses: nefilim/test-build/.github/workflows/publish.yaml@main
-#    needs: release-and-tag
-    needs: tag-and-create-release
+    needs: release-and-tag
     with:
-      version_tag: ${{ needs.tag-and-create-release.outputs.version_tag }}
-#      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}
+      version_tag: ${{ needs.release-and-tag.outputs.version_tag }}

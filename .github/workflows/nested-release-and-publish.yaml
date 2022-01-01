@@ -1,25 +1,29 @@
-name: Manual release
+name: Release and Publish
 
 # Kick off a release manually, only allowed on the main branch
 # Optionally specify the scope & stage to use for the SemVer for the release
 
 on:
-  workflow_call:
+  workflow_dispatch:
+    if: github.ref == 'refs/heads/main'
     inputs:
       stage:
         description: 'Stage'
         required: true
-        type: string
+        default: 'final'
+        type: choice
+        options:
+          - 'rc'
+          - 'final'
       scope:
         description: 'Scope'
         required: true
-        type: string
-    outputs:
-      version_tag:
-        description: 'SemVer Tag Name'
-        value: ${{ jobs.tag-and-create-release.outputs.version_tag }}
-
-concurrency: main_release
+        default: 'patch'
+        type: choice
+        options:
+          - 'patch'
+          - 'minor'
+          - 'major'
 
 jobs:
   tag-and-create-release:
@@ -72,3 +76,9 @@ jobs:
             githubRelease
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+  publish:
+    uses: nefilim/test-build/.github/workflows/publish.yaml@main
+    needs: tag-and-create-release
+    with:
+      version_tag: ${{ needs.tag-and-create-release.outputs.version_tag }}
