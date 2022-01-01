@@ -1,0 +1,17 @@
+name: DUMMY Publish the Release
+
+on:
+  workflow_call:
+    inputs:
+      version_tag:
+        description: 'SemVer Tag Name for the Release to publish'
+        required: true
+        type: string
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Input
+        run: echo "the version tag:" ${{ inputs.version_tag}}
