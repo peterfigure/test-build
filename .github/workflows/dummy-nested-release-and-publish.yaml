@@ -48,8 +48,8 @@ jobs:
       - name: Commit and Push Change Log
         id: changelog-commit
         run: |
-          cat "0.4.4" > version.txt
-          cat "v0.4.4" >> version.txt
+          echo "0.4.4" > version.txt
+          echo "v0.4.4" >> version.txt
           echo "::set-output name=version_tag::$(cat version.txt | tail -1)"
 
   publish:
