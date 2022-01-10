@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.dependencyCheck)
     alias(libs.plugins.githubRelease)
     alias(libs.plugins.changelog)
-//    id("org.jetbrains.intellij") version "1.3.0"
+    id("io.github.nefilim.gradle.catalog-plugin") version "0.0.3"
     `maven-publish`
     signing
 }
@@ -40,11 +40,12 @@ semver {
     }
 }
 
+version = semver.version()
+group = "io.github.nefilim.testbuild"
+
 allprojects {
     apply(plugin = rootProject.libs.plugins.dependencyCheck.get().pluginId)
     apply(plugin = rootProject.libs.plugins.semver.get().pluginId)
-
-    group = "io.github.nefilim.kjwt"
 
     val jvmVersion = 11
     java {
@@ -217,6 +218,7 @@ changelog {
     timezone = ZoneId.of("America/Denver")
 
     outputFile = file("${projectDir}/CHANGELOG.md")
+    println("FUTURE: ${this.futureVersionTag}")
 }
 
 githubRelease {
@@ -224,7 +226,7 @@ githubRelease {
     // You get this from your user settings > developer settings > Personal Access Tokens
     owner("nefilim")
     repo("test-build")
-    tagName.set(semver.calculatedTagName)
+    tagName.set(semver.versionTagName())
     targetCommitish("main")
     body(changelog())
     draft(false)
