@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.dependencyCheck)
     alias(libs.plugins.githubRelease)
     alias(libs.plugins.changelog)
-    id("io.github.nefilim.gradle.catalog-plugin") version "0.0.3"
+//    id("io.github.nefilim.gradle.catalog-plugin") version "0.0.3"
     `maven-publish`
     signing
 }
