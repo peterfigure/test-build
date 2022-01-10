@@ -24,9 +24,16 @@ jobs:
     steps:
       - name: Debug
         run: |
+          echo "::group::Github event json"
           echo "${{ toJson(github) }}"
+          echo "::endgroup::"
+          echo "::group::Environment Variables" 
           env | sort
-          
+          echo "::endgroup::"
+          echo "::group::Git log"
+          git log -10
+          echo "::endgroup::"
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
