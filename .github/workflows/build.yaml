@@ -39,6 +39,7 @@ jobs:
       - name: Debug git
         run: |
           echo "::group::Git log"
+          echo "config"
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git log -10
