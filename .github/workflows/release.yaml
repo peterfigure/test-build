@@ -46,7 +46,8 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }} # only update the cache on the default branch https://github.com/gradle/gradle-build-action#optimizing-cache-effectiveness
           arguments: |
-            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }}  
+            -Psemver.main.scope=${{ github.event.inputs.scope }} -Psemver.main.stage=${{ github.event.inputs.stage }} 
+            generateVersionFile
             generateChangelog
         env:
           GITHUB_TOKEN: ${{ github.token }}

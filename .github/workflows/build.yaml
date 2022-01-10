@@ -42,7 +42,7 @@ jobs:
           echo "config"
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
-          git log -10
+          git log --oneline --decorate 
           echo "::endgroup::"
 
       - name: Set up JDK 11
