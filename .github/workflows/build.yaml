@@ -24,8 +24,8 @@ jobs:
     steps:
       - name: Debug
         run: |
-          - echo ${{ toJson(github) }}
-          - env
+          echo ${{ toJson(github) }}
+          env
       - name: Checkout
         uses: actions/checkout@v2
         with:
