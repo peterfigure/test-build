@@ -25,7 +25,7 @@ jobs:
       - name: Debug
         run: |
           echo "${{ toJson(github) }}"
-          env
+          env | sort
       - name: Checkout
         uses: actions/checkout@v2
         with:
