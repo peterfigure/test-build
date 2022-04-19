@@ -19,7 +19,7 @@ on:
         description: 'SemVer Tag Name'
         value: ${{ jobs.tag-and-create-release.outputs.version_tag }}
 
-concurrency: main_release
+#concurrency: main_release
 
 jobs:
   tag-and-create-release:

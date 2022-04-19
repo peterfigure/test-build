@@ -1,11 +1,8 @@
 name: CI Build
 
-# Test the build on every push or PR for every branch, except:
-#  1. renovate created branches
-#  2. only markdown files were updated
-
 on:
   push:
+    branches: [ main ] 
     branches-ignore:
       - 'renovate/*'
     paths-ignore:
@@ -43,6 +40,8 @@ jobs:
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git log --oneline --decorate 
+          git branch -a
+          git tag -l 
           echo "::endgroup::"
 
       - name: Set up JDK 11
