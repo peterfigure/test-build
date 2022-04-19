@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: Debug
         run: |
-          echo "::group::Github event json"
-          echo "${{ toJson(github) }}"
-          echo "::endgroup::"
+#          echo "::group::Github event json"
+#          echo "${{ toJson(github) }}"
+#          echo "::endgroup::"
           echo "::group::Environment Variables" 
           env | sort
           echo "::endgroup::"
