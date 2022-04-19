@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.dependencyCheck)
     alias(libs.plugins.githubRelease)
     alias(libs.plugins.changelog)
-    id("io.github.nefilim.gradle.catalog-plugin") version "0.0.3"
+//    id("io.github.nefilim.gradle.catalog-plugin") version "0.0.3"
     `maven-publish`
     signing
 }
@@ -29,18 +29,14 @@ nexusPublishing {
 }
 
 semver {
-    verbose(true)
     tagPrefix("v")
-    initialVersion("0.0.1")
+    initialVersion("0.1.0")
     findProperty("semver.overrideVersion")?.toString()?.let { overrideVersion(it) }
-
-    main {
-        scope(findProperty("semver.main.scope")?.toString() ?: "minor")
-        stage(findProperty("semver.main.stage")?.toString() ?: "final")
-    }
+    val semVerModifier = findProperty("semver.modifier")?.toString()?.let { buildVersionModifier(it) } ?: { nextPatch() }
+    versionModifier(semVerModifier)
 }
 
-version = semver.version()
+version = semver.version
 group = "io.github.nefilim.testbuild"
 
 allprojects {
@@ -226,7 +222,7 @@ githubRelease {
     // You get this from your user settings > developer settings > Personal Access Tokens
     owner("nefilim")
     repo("test-build")
-    tagName.set(semver.versionTagName())
+    tagName.set(semver.versionTagName)
     targetCommitish("main")
     body(changelog())
     draft(false)

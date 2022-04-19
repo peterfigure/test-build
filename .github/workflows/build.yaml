@@ -1,13 +1,8 @@
 name: CI Build
 
-# Test the build on every push or PR for every branch, except:
-#  1. renovate created branches
-#  2. only markdown files were updated
-
 on:
   push:
-    branches-ignore:
-      - 'renovate/*'
+    branches: [ main ] 
     paths-ignore:
       - '**.md'
   pull_request:
@@ -24,12 +19,28 @@ jobs:
     steps:
       - name: Debug
         run: |
+          echo "::group::Github event json"
           echo "${{ toJson(github) }}"
+          echo "::endgroup::"
+          echo "::group::Environment Variables" 
           env | sort
+          echo "::endgroup::"
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Debug git
+        run: |
+          echo "::group::Git log"
+          echo "config"
+          git config user.name '${{ github.actor }}'
+          git config user.email '${{ github.actor }}@users.noreply.github.com'
+          git log --oneline --decorate 
+          git branch -a
+          git tag -l 
+          echo "::endgroup::"
 
       - name: Set up JDK 11
         uses: actions/setup-java@v2
